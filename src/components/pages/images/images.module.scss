@@ -1,0 +1,90 @@
+.imagesPage {
+  width: 90%;
+  margin: auto;
+  .imagesConteiner {
+    .imagesWrapper {
+      margin-top: 1rem;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      .image {
+        position: relative;
+        width: 18%;
+        margin-bottom: 1rem;
+        img {
+          width: 100%;
+        }
+        .imagesInfo {
+          position: absolute;
+          top: 0;
+          right: 0;
+          background-color: rgba(0, 0, 0, 0.7);
+          height: 100%;
+          width: 100%;
+          display: none;
+          span {
+            font-size: 0.8rem;
+            color: white;
+          }
+          ul {
+            list-style: none;
+            padding: 10px;
+            color: white;
+
+            margin: 0;
+          }
+        }
+        &:hover {
+          .imagesInfo {
+            display: block;
+          }
+        }
+      }
+    }
+    .imagesFilter {
+      display: flex;
+      button.search {
+        position: relative;
+        border-radius: 0px 8px 8px 0px;
+        background-color: #ded6c8;
+        border: 1px solid #ded6c8;
+        padding: 4px 25px 4px 5px;
+        cursor: pointer;
+      }
+      input {
+        margin-left: 1rem;
+        padding: 4px 6px;
+        border-radius: 8px 0px 0px 8px;
+        border: 1px solid #ded6c8;
+      }
+      .iconLupa {
+        position: absolute;
+        width: 5px;
+        height: 5px;
+        border: 2px solid black;
+        border-radius: 100%;
+        right: 7px;
+        top: 6px;
+        opacity: 0.2;
+        &:after {
+          position: absolute;
+          width: 100%;
+          height: 2px;
+          background-color: black;
+          display: block;
+          content: "";
+          top: 0%;
+          left: 0%;
+
+          transform: rotate(45deg);
+          transform-origin: -2px 9px;
+        }
+      }
+    }
+  }
+}
+
+div[class*="form-group"] {
+  display: flex;
+}

@@ -1,0 +1,62 @@
+.aboutPage {
+  width: 90%;
+  margin: auto;
+  padding-bottom: 3rem;
+  .topSection {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    img {
+      width: 45%;
+    }
+    .information {
+      width: 50%;
+      padding: 0 1.125rem;
+      p {
+        margin: 0;
+        line-height: 1.25;
+      }
+      .buttonsWrapper {
+        display: flex;
+        align-items: center;
+        margin: 1rem 0;
+      }
+    }
+  }
+  .bottomSection {
+    h2 {
+      span {
+        color: #c1a786;
+      }
+    }
+  }
+}
+div[class*="carousel-row"] {
+  margin: 0 5px;
+}
+
+span[class*="carousel-arrow"] {
+  &:before,
+  &:after {
+    content: none;
+  }
+}
+span[class*="customArrowRight"] {
+  display: block;
+  margin: 30px auto;
+  width: 25px;
+  height: 25px;
+  border-top: 3px solid #8d6b3d;
+  border-left: 3px solid #8d6b3d;
+  transform: rotate(135deg);
+}
+span[class*="customArrowLeft"] {
+  display: block;
+  margin: 30px auto;
+  width: 25px;
+  height: 25px;
+  border-top: 3px solid #8d6b3d;
+  border-left: 3px solid #8d6b3d;
+  transform: rotate(-45deg);
+}

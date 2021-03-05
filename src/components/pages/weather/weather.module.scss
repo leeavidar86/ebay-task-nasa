@@ -1,0 +1,31 @@
+.weatherPage {
+  width: 90%;
+  margin: auto;
+  padding-bottom: 3rem;
+  .weatherBoxWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    .weatherBox {
+      width: 28%;
+      border: 1px solid black;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        li {
+          span {
+            font-size: 0.75rem;
+          }
+          .title {
+            font-weight: bold;
+            margin-right: 1rem;
+          }
+        }
+      }
+    }
+  }
+}

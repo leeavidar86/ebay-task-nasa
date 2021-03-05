@@ -1,0 +1,17 @@
+$color: #ded6c8;
+
+.linkWrapper {
+  background-color: $color;
+  width: auto;
+  border-radius: 0.625rem;
+  display: inline;
+  margin-right: 1rem;
+  a {
+    text-decoration: none;
+    color: black;
+    width: auto;
+    font-size: 1rem;
+    padding: 1.125rem;
+    display: flex;
+  }
+}
