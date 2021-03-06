@@ -11,11 +11,14 @@ export const WEATHER =
             "mn": 704.3942, 
             "mx": 741.402
           }, 
+          "HWS": { "av": 4.35, "ct": 154146, "mn": 0.156, "mx": 17.617 }, 
+          "AT": { "av": -71.233, "ct": 326642, "mn": -101.024, "mx": -27.149 },
           "Season": "winter", 
           "Southern_season": "late summer", 
           "WD": {
             "most_common": null
           }
+          
         }, 
         "805": {
           "First_UTC": "2021-03-02T08:18:43Z", 
@@ -28,6 +31,8 @@ export const WEATHER =
             "mn": 703.5921, 
             "mx": 741.9209
           }, 
+          "HWS": { "av": 3.35, "ct": 154146, "mn": 0.156, "mx": 17.617 }, 
+          "AT": { "av": -51.233, "ct": 326642, "mn": -101.024, "mx": -27.149 },
           "Season": "winter", 
           "Southern_season": "late summer", 
           "WD": {
@@ -45,6 +50,8 @@ export const WEATHER =
             "mn": 705.5216, 
             "mx": 742.5975
           }, 
+          "HWS": { "av": 8.35, "ct": 154146, "mn": 0.156, "mx": 17.617 }, 
+          "AT": { "av": -31.233, "ct": 326642, "mn": -101.024, "mx": -27.149 },
           "Season": "winter", 
           "Southern_season": "late summer", 
           "WD": {
@@ -208,3 +215,5 @@ export const WEATHER =
           ]
         }
       }
+
+

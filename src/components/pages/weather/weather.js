@@ -49,9 +49,18 @@ export default class Weather extends Component {
 		});
 	};
     async componentDidMount(){
+        //you can choose to take the data from mock by comment out the 'this.getWeatherFromMock();' and by comment:  this.getWeather();
        this.getWeather();
-    }
+       //this.getWeatherFromMock();
 
+    }
+    getWeatherFromMock(){
+        this.setState({
+            weatherInfoList:WEATHER,
+            loader:false,
+            displayData:true
+        })
+    }
     async getWeather(){
         let dataFromApi = await getWeatherFromApi();
         if(dataFromApi.length === 0) {
@@ -108,9 +117,9 @@ export default class Weather extends Component {
                                     <div className={style.weatherBox} key={key}> 
                                     <ul>
                                         <li><span className={style.title}>Data point:</span><span>{key} </span></li>
-                                        <li><span className={style.title}>Temperatura[AVG]:</span><span> - </span></li>
-                                        <li><span className={style.title}>Wind[AVG]:</span><span> - </span></li>
-                                        <li><span className={style.title}>Pressure[AVG]:</span><span>{value.PRE.av} </span></li>
+                                        <li><span className={style.title}>Temperatura[AVG]:</span><span>{value.AT && value.AT.av? value.AT.av : "-" }</span></li>
+                                        <li><span className={style.title}>Wind[AVG]:</span><span>{value.HWS && value.HWS.av? value.HWS.av : "-" }</span></li>
+                                        <li><span className={style.title}>Pressure[AVG]:</span><span>{value.PRE && value.PRE.av? value.PRE.av : "-" }</span></li>
                                         <li><span className={style.title}>First UTC:</span><span>"{value.First_UTC}" </span></li>
                                         <li><span className={style.title}>Last UTC:</span><span>"{value.Last_UTC}" </span></li>  
                                     </ul>
