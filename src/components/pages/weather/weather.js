@@ -73,7 +73,7 @@ export default class Weather extends Component {
  
     handleSortChange = (e) => {
         this.setState({selectValueToSort:e.target.value},()=>{
-            this.onSortChange()
+          //  this.onSortChange()
         });
 
     }
