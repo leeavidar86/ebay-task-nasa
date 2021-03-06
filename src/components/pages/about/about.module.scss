@@ -9,12 +9,21 @@
     justify-content: space-around;
     align-items: flex-start;
     flex-wrap: wrap;
-    img {
+    .imageWrapper {
       width: 45%;
       @media (max-width: 991px) {
         width: 100%;
       }
+      span {
+        display: block;
+        text-align: center;
+        margin-top: 0.5rem;
+      }
+      img {
+        width: 100%;
+      }
     }
+
     .information {
       width: 50%;
       padding: 0 1.125rem;

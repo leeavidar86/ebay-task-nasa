@@ -62,8 +62,14 @@ export default class About extends Component {
             {loader && (
                 <Loader />
             )}
-            {displayGallery && 
-                <img  src={imageArray[0].img_src} alt="" />}
+            {displayGallery && (
+                <div className={style.imageWrapper}>
+                    <img  src={imageArray[0].img_src} alt="" />
+                    <span>Curiosity rover image</span>
+                </div>
+            )
+              
+                }
                 <div className={style.information}>
                    <p> {ABOUT_PAGE_TEXT}</p>
                    <div className={style.buttonsWrapper}>
