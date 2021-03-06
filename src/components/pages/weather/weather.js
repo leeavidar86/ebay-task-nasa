@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import style from './weather.module.scss'
 import {getWeatherFromApi} from '../../helper/helper';
 import Loader from '../../shared/loader/loader';
+import Button from '../../shared/button/button';
 import {WEATHER} from '../../api/mock'
 import ReactPaginate from 'react-paginate';
 
+//Sorting - not working
 const sortTypes = {
 	up: {
 		class: 'sort-up',
@@ -26,15 +28,17 @@ export default class Weather extends Component {
           weatherInfoList:{},
           loader:false,
           displayData:false,
+
+          //Sorting - not working
           selectValueToSort:'Temperatura',
           currentSort: 'default',
-
         };
       }
+
+      //Sorting - not working
       onSortChange = () => {
 		const { currentSort } = this.state;
 		let nextSort;
-
 		if (currentSort === 'down') nextSort = 'up';
 		else if (currentSort === 'up') nextSort = 'default';
 		else if (currentSort === 'default') nextSort = 'down';
@@ -45,14 +49,7 @@ export default class Weather extends Component {
 		});
 	};
     async componentDidMount(){
-       // this.setState({ loader:true},()=>{console.log(this.state.weatherInfoList)})
-        // if(this.state.weatherInfoList) {
-            
-        //     this.setState({ displayData:true})
-        // }
-      
        this.getWeather();
-
     }
 
     async getWeather(){
@@ -70,7 +67,8 @@ export default class Weather extends Component {
         }
      
     }
- 
+
+    //Sorting - not working
     handleSortChange = (e) => {
         this.setState({selectValueToSort:e.target.value},()=>{
           //  this.onSortChange()
@@ -79,16 +77,17 @@ export default class Weather extends Component {
     }
     
     render() {        
-        const { currentSort } = this.state;
+        const { selectValue,loader,displayData,weatherInfoList } = this.state;
 
-        return (<>
+        return (
             <section className={style.weatherPage}>
                 <div className={style.titleWrapper}>
+                    <Button text="< Back" url="/" isLink={true}/>
                     <h1>Mars Weather</h1>
                     <div className={style.sortBox}>
                     Sort By: 
                     <select value="Pressure"    
-                        value={this.state.selectValue} 
+                        value={selectValue} 
                         onChange={this.handleSortChange} >
                         <option value="Temperatura">Temperatura</option>
                         <option value="Pressure">Pressure</option>
@@ -97,15 +96,13 @@ export default class Weather extends Component {
                     </div>
                 </div>
                 
-                {this.state.loader && (
+                {loader && (
                   <Loader />
                 )}
                     <div className={style.weatherBoxWrapper}>
 
-                    {this.state.displayData && 
-                   
-
-                        Object.entries(this.state.weatherInfoList).map(([key, value]) => {
+                    {displayData && 
+                        Object.entries(weatherInfoList).map(([key, value]) => {
                             if(key !== 'sol_keys' && key !== 'validity_checks') {
                                 return(
                                     <div className={style.weatherBox} key={key}> 
@@ -120,13 +117,12 @@ export default class Weather extends Component {
                                 </div>
                                 ) 
                             }
-                               
                       })
 
                     }
                     </div>
            
             </section>
-        </>)
+        )
     }
 }

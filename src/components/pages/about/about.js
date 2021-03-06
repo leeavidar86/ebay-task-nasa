@@ -4,7 +4,7 @@ import style from './about.module.scss'
  import Slider from 'infinite-react-carousel';
 import Button from '../../shared/button/button';
 import Loader from '../../shared/loader/loader';
-import {ABOUT_PAGE_TEXT} from '../../helper/aboutPage';
+import {ABOUT_PAGE_TEXT} from '../../helper/texts';
 import {getImagesFromApiByDate} from '../../helper/helper';
 
 export default class About extends Component {
@@ -27,7 +27,6 @@ export default class About extends Component {
       }
 
      async componentDidMount(){
-        console.log('getYesterdayDate',this.getYesterdayDate());
         this.setState({ loader:true })
         let yesterdayDate = this.getYesterdayDate();
         let dataFromApi = await getImagesFromApiByDate(yesterdayDate);
@@ -53,13 +52,18 @@ export default class About extends Component {
 
 
     render() {        
-        const { settings } = this.state;
-  
+        const { settings,loader,displayGallery,imageArray } = this.state;
+        console.log(imageArray)
       return (
         <section className={style.aboutPage}>
             <h1>About The Program</h1>
+            
             <section className={style.topSection}>
-                <img  src="https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/02929/opgs/edr/fcam/FLB_657515400EDR_F0830306FHAZ00206M_.JPG" alt="" />
+            {loader && (
+                <Loader />
+            )}
+            {displayGallery && 
+                <img  src={imageArray[0].img_src} alt="" />}
                 <div className={style.information}>
                    <p> {ABOUT_PAGE_TEXT}</p>
                    <div className={style.buttonsWrapper}>
@@ -70,12 +74,12 @@ export default class About extends Component {
             </section>
             <section className={style.bottomSection}>
             <h2>Curiosity rover images <span>from today</span></h2>
-            {this.state.loader && (
+            {loader && (
             <Loader />
         )}
-            {this.state.displayGallery && 
+            {displayGallery && 
                 <Slider {...settings}>
-                    {this.state.imageArray.map((img)=>{
+                    {imageArray.map((img)=>{
                         return <img src={img.img_src} key={img.img_src} alt={img.img_src} />
                     })
                 }

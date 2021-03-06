@@ -6,9 +6,16 @@ export default class Button extends Component {
 
     render() {
         return (
-            <div className={style.linkWrapper}>
-                <Link to={this.props.url}>{this.props.text}</Link>
+           
+            this.props.isLink ? (
+                <div className={style.linkWrapper}>
+                    <Link  to={this.props.url}>{this.props.text}</Link>
+                </div>
+            ) : (
+                <div className={style.buttonWrapper}>
+                <Link  to={this.props.url}>{this.props.text}</Link>
             </div>
+            )
         )
     }
 }

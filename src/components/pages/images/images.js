@@ -4,7 +4,8 @@ import DatePicker from 'react-datepicker';
 import {formatDate, getImagesFromApiByDate} from '../../helper/helper'
 import Loader from '../../shared/loader/loader'
 import "react-datepicker/dist/react-datepicker.css";
- import ReactPaginate from 'react-paginate';
+import ReactPaginate from 'react-paginate';
+import Button from '../../shared/button/button';
 
 export default class Images extends Component {
     constructor(props) {
@@ -67,9 +68,11 @@ export default class Images extends Component {
     };
  
     render() {        
-     
+        const { startDate,loader,userMessage,imageArray,originalImageArrayLength } = this.state;
+
         return (
-     <section className={style.imagesPage}>
+         <section className={style.imagesPage}>
+        <Button text="< Back" url="/" isLink={true}/>
         <h1>Mars images By Date</h1>
         <div className={style.imagesConteiner}>
         <div className={style.imagesFilter}>
@@ -77,7 +80,7 @@ export default class Images extends Component {
             <div className="form-group">
                 Earth date: 
             <DatePicker
-                selected={ this.state.startDate }
+                selected={ startDate }
                 onChange={ this.handleChange }
                 name="startDate"
                 dateFormat="MM/dd/yyyy"
@@ -86,13 +89,13 @@ export default class Images extends Component {
             </div>
         </form>
         </div>
-        {this.state.loader && (
+        {loader && (
             <Loader />
         )}
         <div className={style.imagesWrapper}>
-             {this.state.userMessage&& <span>{this.state.userMessage}</span>}
-            {this.state.imageArray && 
-            this.state.imageArray.map((img)=>{
+             {userMessage&& <span>{userMessage}</span>}
+            {imageArray && 
+            imageArray.map((img)=>{
                 return (
                     <div className={style.image}>
                         <img src={img.img_src} key={img.img_src} alt={img.img_src} />
@@ -109,7 +112,7 @@ export default class Images extends Component {
             }
           
         </div>
-        {this.state.imageArray && this.state.originalImageArrayLength > 15 &&
+        {imageArray && originalImageArrayLength > 15 &&
 
         <ReactPaginate
             previousLabel={"<"}
