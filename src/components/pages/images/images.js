@@ -4,8 +4,7 @@ import DatePicker from 'react-datepicker';
 import {formatDate, getImagesFromApiByDate} from '../../helper/helper'
 import Loader from '../../shared/loader/loader'
 import "react-datepicker/dist/react-datepicker.css";
-// import ReactPaginate from 'react-paginate';
-
+ import ReactPaginate from 'react-paginate';
 
 export default class Images extends Component {
     constructor(props) {
@@ -14,11 +13,15 @@ export default class Images extends Component {
           imageArray:[],
           startDate: new Date(),
           userMessage:'',
-          loader:false
+          loader:false,
+          originalImageArrayLength:0,
+          offset: 0,
+          perPage: 15,
+          currentPage: 0
         };
         this.handleChange = this.handleChange.bind(this);
         this.onFormSubmit = this.onFormSubmit.bind(this);
-       // this.handlePageClick = this.handlePageClick.bind(this);
+        this.handlePageClick = this.handlePageClick.bind(this);
       }
       handleChange(date) {
 
@@ -26,21 +29,42 @@ export default class Images extends Component {
           startDate: date
         })
       }
-  
-      async onFormSubmit(e) {
-        e.preventDefault();
+      async getImages () {
         this.setState({loader:true, userMessage:''})
+
         let newDate = formatDate(this.state.startDate);
         let dataFromApi = await getImagesFromApiByDate(newDate);
         if(dataFromApi.photos.length === 0) {
             this.setState({userMessage: 'No images for this date, please choose another date :)', imageArray:[],loader:false})
         } else {
-            this.setState({imageArray: dataFromApi.photos, userMessage:'', loader:false})
+            let sliceDataFromApi = dataFromApi.photos.slice(this.state.offset, this.state.offset + this.state.perPage)
+            this.setState({ 
+                originalImageArrayLength:dataFromApi.photos.length,
+                imageArray: sliceDataFromApi,
+                userMessage:'', 
+                loader:false,  
+                pageCount: Math.ceil(dataFromApi.photos.length / this.state.perPage)
+            })
         }
+      }
+      async onFormSubmit(e) {
+        e.preventDefault();
+        this.getImages()
         
       }
      
-
+      handlePageClick = (e) => {
+        const selectedPage = e.selected;
+        const offset = selectedPage * this.state.perPage;
+  
+        this.setState({
+            currentPage: selectedPage,
+            offset: offset
+        }, () => {
+            this.getImages()
+        });
+  
+    };
  
     render() {        
      
@@ -85,8 +109,22 @@ export default class Images extends Component {
             }
           
         </div>
+        {this.state.imageArray && this.state.originalImageArrayLength > 15 &&
 
+        <ReactPaginate
+            previousLabel={"<"}
+            nextLabel={">"}
+            breakLabel={"..."}
+            breakClassName={"break-me"}
+            pageCount={this.state.pageCount}
+            marginPagesDisplayed={2}
+            pageRangeDisplayed={5}
+            onPageChange={this.handlePageClick}
+            containerClassName={"pagination"}
+            subContainerClassName={"pages pagination"}
+            activeClassName={"active"}/>
          
+        }
         </div>
         </section>
        )

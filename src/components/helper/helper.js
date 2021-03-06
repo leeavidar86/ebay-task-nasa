@@ -15,7 +15,7 @@ export const formatDate = (date) => {
 }
  
 export const getImagesFromApiByDate = async (date) => {
-    const data = await (await fetch(`${IMAGE_API}?earth_date=${date}&api_key=${API_KEY}&page=1`)).json();
+    const data = await (await fetch(`${IMAGE_API}?earth_date=${date}&api_key=${API_KEY}`)).json();
     return data;
   }
 

@@ -1,7 +1,11 @@
+@import "../../shared/scss/pagination.module.scss";
+@import "../../shared/scss/vars.module.scss";
+
 .imagesPage {
   width: 90%;
   margin: auto;
   .imagesConteiner {
+    min-height: 600px;
     .imagesWrapper {
       margin-top: 1rem;
       width: 100%;
@@ -47,8 +51,8 @@
       button.search {
         position: relative;
         border-radius: 0px 8px 8px 0px;
-        background-color: #ded6c8;
-        border: 1px solid #ded6c8;
+        background-color: $color1;
+        border: 1px solid $color1;
         padding: 4px 25px 4px 5px;
         cursor: pointer;
       }
@@ -56,7 +60,7 @@
         margin-left: 1rem;
         padding: 4px 6px;
         border-radius: 8px 0px 0px 8px;
-        border: 1px solid #ded6c8;
+        border: 1px solid $color1;
       }
       .iconLupa {
         position: absolute;
