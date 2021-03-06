@@ -14,5 +14,4 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 ### Unresolved issues
 
 **Weather page** -
-The Api is missing some of the relevant information for the sorting.
-The missing data was marked with '-'.
+Missing sorting, started but didnt finish.
